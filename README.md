@@ -1,72 +1,89 @@
-# AutoCare AI
+# CareClaim – Intelligent Healthcare Claim Processing System
 
-AutoCare AI is an intelligent, multi-agent system designed to automate healthcare insurance claim processing. It replaces slow, manual prior authorization workflows with a fast, data-driven, and explainable solution.
+CareClaim is an intelligent, AI-powered healthcare claim processing platform designed to automate insurance claim validation and approval workflows. It replaces slow, manual healthcare processing systems with a fast, explainable, and data-driven solution.
 
 ---
 
 ## Overview
 
-In traditional healthcare systems, insurance approvals are time-consuming, error-prone, and often lack transparency. AutoCare AI addresses these challenges by integrating validation logic, fraud detection, and AI-based reasoning into a unified pipeline that delivers real-time decisions.
+Traditional healthcare insurance claim processing is often time-consuming, error-prone, and lacks transparency. CareClaim addresses these challenges by combining OCR-based document extraction, claim validation, fraud detection, and AI-assisted reasoning into a unified workflow that delivers real-time claim decisions.
 
 ---
 
 ## Key Features
 
 * Role-based authentication (Patient, Agent, Admin)
-* Document upload with OCR-based data extraction
-* Multi-agent architecture:
+* Medical document upload with OCR-based extraction
+* Intelligent multi-stage claim processing pipeline:
 
-  * Agent A – Document Processing and Structuring
-  * Agent B – Policy Validation and Cost Analysis
-  * Agent C – Fraud Detection and Claim History Check
-  * Supervisor – Final Decision Engine
+  * Claim Document Processing & Structuring
+  * Policy Validation & Cost Analysis
+  * Fraud Detection & Claim History Analysis
+  * Final Decision Engine
 * Dataset-driven cost validation using historical claims
-* Fraud detection (duplicate claims, anomalies, mismatches)
-* Decision engine (Approve / Review / Reject)
-* Explainable outputs with clear reasoning
-* Dashboard interface for different user roles
+* Fraud detection for duplicate claims, anomalies, and mismatches
+* Claim decision engine (Approve / Review / Reject)
+* Explainable outputs with transparent reasoning
+* Dashboard interface for multiple user roles
 
 ---
 
 ## System Workflow
 
-1. User submits a claim with medical documents
-2. OCR extracts and structures medical data
-3. Validation engine checks policy rules and cost boundaries
-4. Claim history and fraud patterns are analyzed
-5. AI reasoning generates explanations
-6. Supervisor produces the final decision with transparency
+1. User logs into the platform
+2. User uploads healthcare claim documents
+3. OCR extracts and structures medical information
+4. Validation engine checks policy rules and claim eligibility
+5. Fraud and claim history analysis is performed
+6. AI-assisted reasoning generates explainable outputs
+7. Final claim decision is generated with transparency
 
 ---
 
 ## Tech Stack
 
-* Frontend: React (Vite)
-* Backend: Node.js (Express)
-* Database: SQLite / JSON dataset
-* AI Service: Python FastAPI
-* Core Logic: Rule-based, dataset-driven, and LLM-ready
+### Frontend
+
+* React (Vite)
+
+### Backend
+
+* FastAPI
+* Node.js (Express)
+
+### Database
+
+* SQLite
+* JSON-based datasets
+
+### OCR & AI
+
+* Python FastAPI Services
+* OCR-based medical data extraction
+* Rule-based validation pipelines
+* AI-assisted claim reasoning
 
 ---
 
 ## Impact
 
-* Reduces approval time from days to seconds
+* Reduces claim approval time from days to seconds
 * Detects and prevents fraudulent claims
-* Improves efficiency in healthcare workflows
+* Improves efficiency in healthcare insurance workflows
 * Provides transparent and explainable decisions
+* Minimizes manual processing effort
 
 ---
 
 ## Project Team
 
-* Aravind Adityaa M 
-* Lohitha Sai K 
-* Nivetha J 
-* Rajamurugan VS 
+* Aravind Adityaa M
+* Lohitha Sai K
+* Nivetha J
+* Rajamurugan VS
 
 ---
 
 ## Conclusion
 
-AutoCare AI demonstrates how multi-agent systems and data-driven validation can transform healthcare insurance processes into faster, more accurate, and transparent systems.
+CareClaim demonstrates how AI-powered workflows, OCR processing, and intelligent validation systems can modernize healthcare insurance claim processing into a faster, more accurate, scalable, and transparent ecosystem.
