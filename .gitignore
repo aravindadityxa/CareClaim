@@ -1,0 +1,91 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.pytest_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Virtual environments
+venv/
+.venv/
+pa-workflow/venv/
+pa-workflow/.venv/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+.eggs/
+
+# Logs
+*.log
+logs/
+
+# IDE/editor
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.env
+frontend/.env.*
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Database / local data
+*.sqlite3
+*.db
+
+# Runtime temp files
+tmp/
+temp/
+.cache/
+
+# Markdown files
+AGENT_C_DEPLOYMENT_COMPLETE.md
+AGENT_C_FILE_INDEX.md
+AGENT_C_v2_SUMMARY.md
+AZURE_VM_CREATION_GUIDE.md
+AZURE_VM_DEPLOYMENT_GUIDE.md
+README.md
+
+pa-workflow/**/AGENT_C_DEPLOYMENT_GUIDE.md
+pa-workflow/**/AGENT_C_INTEGRATION_GUIDE.md
+pa-workflow/**/AGENT_C_QUICK_REFERENCE.md
+pa-workflow/**/AGENT_C_REFACTORING.md
+pa-workflow/**/AGENT_C_TESTING_GUIDE.md
+
+# PowerShell script
+azure-vm-creation.ps1
+
+# DOCX reports
+*_Summary_Report.docx
+
+# PDFs
+ugly_prior_auth_scan_1.pdf
+prior_auth_test_document.pdf
+fraudulent_high_risk_claim.pdf
+realistic_suspicious_claim_document.pdf
+AZURE_VM_CREATION_GUIDE.md
+AZURE_VM_DEPLOYMENT_GUIDE.md
