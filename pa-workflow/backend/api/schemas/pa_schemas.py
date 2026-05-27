@@ -1,0 +1,108 @@
+from pydantic import BaseModel, Field, field_validator
+from uuid import UUID
+from datetime import date, datetime, timedelta
+from typing import List, Optional, Literal
+
+class PASubmitRequest(BaseModel):
+    """Schema for submitting a new Prior Authorization request."""
+    patient_member_id: str = Field(..., min_length=8, max_length=20)
+    payer_id: UUID
+    plan_id: UUID
+    provider_npi: str = Field(..., pattern=r"^\d{10}$")
+    icd10_codes: List[str] = Field(..., min_length=1)
+    cpt_codes: List[str] = Field(..., min_length=1)
+    date_of_service: date
+    prior_treatment_history: Optional[str] = None
+    medication_name: Optional[str] = None
+    medication_dosage: Optional[str] = None
+
+    @field_validator('date_of_service')
+    def validate_date_of_service(cls, v: date) -> date:
+        if v < (date.today() - timedelta(days=90)):
+            raise ValueError("Date of service cannot be more than 90 days in the past")
+        return v
+
+class PAStatusResponse(BaseModel):
+    """Schema for the response of a PA status check."""
+    pa_id: UUID
+    status: str
+    final_score: Optional[float] = None
+    risk_flag: Optional[str] = None
+    decision: Optional[str] = None
+    auth_code: Optional[str] = None
+    auth_valid_until: Optional[date] = None
+    created_at: datetime
+    decided_at: Optional[datetime] = None
+
+
+class PADetailResponse(PAStatusResponse):
+    """Detailed response for a PA request including per-agent outputs."""
+    details: Optional[dict] = None
+
+class PADecisionRequest(BaseModel):
+    """Schema for an adjudicator to submit a decision."""
+    decision: Literal["HUMAN_APPROVE", "HUMAN_DENY"]
+    denial_reason_code: Optional[str] = None
+    conditions: Optional[str] = None
+    override_reason: str = Field(..., min_length=10)
+
+class PAAppealRequest(BaseModel):
+    """Schema for submitting an appeal for a denied PA."""
+    appeal_reason: str = Field(..., min_length=50)
+    supporting_documents: Optional[List[str]] = None
+
+class DocumentUploadResponse(BaseModel):
+    """Schema for the response after uploading documents."""
+    pa_id: UUID
+    uploaded_files: List[str]
+    missing_docs: List[str]
+    status: str
+
+
+class PAChatRequest(BaseModel):
+    """Schema for context-aware PA assistant chat."""
+    message: str = Field(..., min_length=1, max_length=4000)
+
+
+class PAChatResponse(BaseModel):
+    """Schema for chat response from Sonar medical advisor persona."""
+    pa_id: UUID
+    answer: str
+    used_context_keys: List[str] = Field(default_factory=list)
+
+
+class FollowUpQuestion(BaseModel):
+    id: str
+    field: str
+    type: str
+    label: str
+    placeholder: Optional[str] = None
+    required: bool = False
+    options: Optional[List[str]] = None
+    minChars: Optional[int] = None
+    maxChars: Optional[int] = None
+    rationale: Optional[str] = None
+
+
+class QuestionGenerationResponse(BaseModel):
+    questions: List[FollowUpQuestion]
+    metadata: Optional[dict] = None
+
+
+class ReviewIssue(BaseModel):
+    code: str
+    message: str
+    severity: Literal["info", "warning", "critical"] = "warning"
+
+
+class ReviewSuggestion(BaseModel):
+    field: str
+    suggestedText: str
+
+
+class AIReviewResponse(BaseModel):
+    score: float = Field(..., ge=0.0, le=100.0)
+    pass_review: bool
+    issues: List[ReviewIssue] = Field(default_factory=list)
+    suggestions: List[ReviewSuggestion] = Field(default_factory=list)
+    model_metadata: Optional[dict] = None
